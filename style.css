@@ -1,0 +1,160 @@
+/* --- PALETA DE COLORES Y FUENTES: DÍA DE MUERTOS --- */
+:root {
+    --color-cempasuchil: #ff9a00;
+    --color-bugambilia: #cf2c8a;
+    --color-morado-papel: #8a2be2;
+    --color-hueso: #f5f5dc;
+    --color-fondo: #121212;
+    --font-titulos: 'Cinzel Decorative', cursive;
+    --font-cuerpo: 'Montserrat', sans-serif;
+}
+
+body {
+    font-family: var(--font-cuerpo);
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-fondo);
+    color: var(--color-hueso);
+    scroll-behavior: smooth;
+}
+
+/* --- NAVEGACIÓN FESTIVA --- */
+nav {
+    background: linear-gradient(45deg, var(--color-bugambilia), var(--color-cempasuchil));
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 4px solid var(--color-fondo);
+}
+
+nav a {
+    color: var(--color-fondo);
+    background-color: var(--color-hueso);
+    padding: 8px 15px;
+    border-radius: 20px;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 600;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+nav a:hover {
+    transform: scale(1.1);
+    background-color: var(--color-cempasuchil);
+    color: var(--color-fondo);
+}
+
+/* --- CABECERA ANIMADA --- */
+.section-header {
+    padding: 6rem 1rem;
+    text-align: center;
+    background: linear-gradient(45deg, var(--color-morado-papel), var(--color-bugambilia), var(--color-cempasuchil));
+    background-size: 400% 400%;
+    animation: gradient-animation 15s ease infinite;
+}
+
+.section-header h1 {
+    font-family: var(--font-titulos);
+    font-size: clamp(2.5rem, 8vw, 4.5rem); /* Tamaño de fuente adaptable */
+    color: white;
+    margin: 0;
+    text-shadow: 3px 3px 5px rgba(0,0,0,0.5);
+}
+
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* --- SECCIONES CON BORDE DE PAPEL PICADO --- */
+section {
+    padding: 80px 10%;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    border-bottom: 2px dashed var(--color-bugambilia);
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background:
+        radial-gradient(circle at 25px -10px, transparent 20px, var(--color-fondo) 21px),
+        radial-gradient(circle at 75px -10px, transparent 20px, var(--color-fondo) 21px);
+    background-size: 100px 20px;
+}
+
+section h2 {
+    font-family: var(--font-titulos);
+    font-size: 2.8em;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--color-cempasuchil);
+}
+
+p, li {
+    font-size: 1.1em;
+    line-height: 1.7;
+}
+
+/* --- GALERÍA DINÁMICA --- */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.gallery-item {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--color-morado-papel);
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(255, 154, 0, 0.4);
+}
+
+.gallery-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.gallery-item p {
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+/* --- ANIMACIÓN DE APARICIÓN AL HACER SCROLL --- */
+.hidden {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-50%);
+    transition: all 1s ease-out;
+}
+
+.show {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+}
+
+@media (prefers-reduced-motion) {
+    .hidden {
+        transition: none;
+    }
+}
